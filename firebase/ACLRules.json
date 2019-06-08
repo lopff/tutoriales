@@ -1,0 +1,10 @@
+//Sample Firestore security rules for an Access Control List (ACL), where the content determines which users have authorization.
+
+//rules.json
+
+match /posts/{document} {
+
+    allow read;
+    allow write: if resource.data.members.hasAny(request.auth.uid);
+
+}
